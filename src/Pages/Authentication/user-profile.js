@@ -61,7 +61,7 @@ const UserProfile = () => {
       redirect: 'follow'
     };
 
-    fetch("http://localhost:8080/api/authentication/showQR/admin", requestOptions)
+    fetch("https://seashell-app-bbv6o.ondigitalocean.app/api/authentication/showQR/admin", requestOptions)
       .then(response => response.json())
       .then(result => {
         setIsEnable(result[0]);
@@ -112,9 +112,9 @@ const UserProfile = () => {
       
       var url = "";
       if (isEnable) {
-        url = "http://localhost:8080/api/authentication/disabled"
+        url = "https://seashell-app-bbv6o.ondigitalocean.app/api/authentication/disabled"
       } else {
-        url = "http://localhost:8080/api/authentication/enabled";
+        url = "https://seashell-app-bbv6o.ondigitalocean.app/api/authentication/enabled";
       }
       fetch(url, requestOptions)
         .then(response => response.text())

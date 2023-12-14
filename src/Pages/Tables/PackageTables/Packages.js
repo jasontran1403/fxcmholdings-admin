@@ -38,7 +38,7 @@ const FixedHeaderDatatables = () => {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:8080/api/admin/listPackage", requestOptions)
+        fetch("https://seashell-app-bbv6o.ondigitalocean.app/api/admin/listPackage", requestOptions)
             .then(response => response.json())
             .then(result => setData(result))
             .catch(error => console.log('error', error));

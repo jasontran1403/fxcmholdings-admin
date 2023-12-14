@@ -22,7 +22,7 @@ const UserPanel = () => {
       redirect: 'follow'
     };
 
-    fetch("http://localhost:8080/api/admin/static", requestOptions)
+    fetch("https://seashell-app-bbv6o.ondigitalocean.app/api/admin/static", requestOptions)
       .then(response => response.json())
       .then(result => {
         setBnbBalance(result.bnbWallet);

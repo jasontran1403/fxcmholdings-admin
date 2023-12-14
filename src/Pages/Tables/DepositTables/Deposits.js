@@ -51,7 +51,7 @@ const FixedHeaderDatatables = () => {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:8080/api/admin/listDeposit", requestOptions)
+        fetch("https://seashell-app-bbv6o.ondigitalocean.app/api/admin/listDeposit", requestOptions)
             .then(response => response.json())
             .then(result => {
                 setData(result);
