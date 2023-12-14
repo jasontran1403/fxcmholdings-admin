@@ -9,8 +9,8 @@ let users = [
     uid: 1,
     username: "admin",
     role: "admin",
-    password: "123456",
-    email: "admin@Themesdesign.com",
+    password: "admin",
+    email: "admin",
   },
 ];
 

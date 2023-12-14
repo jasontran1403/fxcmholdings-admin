@@ -36,14 +36,15 @@ const Login = props => {
     enableReinitialize: true,
 
     initialValues: {
-      email: "admin@Themesdesign.com" || '',
-      password: "123456" || '',
+      email: "admin" || '',
+      password: "admin" || '',
     },
     validationSchema: Yup.object({
       email: Yup.string().required("Please Enter Your Email"),
       password: Yup.string().required("Please Enter Your Password"),
     }),
     onSubmit: (values) => {
+      // localStorage.setItem("authUser", JSON.stringify(users[objIndex]));
       dispatch(loginUser(values, props.router.navigate));
     }
   });
@@ -148,7 +149,7 @@ const Login = props => {
                           name="email"
                           className="form-control"
                           placeholder="Enter email"
-                          type="email"
+                          type="text"
                           onChange={validation.handleChange}
                           onBlur={validation.handleBlur}
                           value={validation.values.email || ""}
