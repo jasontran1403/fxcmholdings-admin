@@ -26,6 +26,16 @@ const Withdraw = () => {
 const FixedHeaderDatatables = () => {
     const [data, setData] = useState([]);
 
+    const [searchText, setSearchText] = useState('');
+
+    const handleSearch = (text) => {
+        setSearchText(text);
+    };
+
+    const filteredData = data.filter((item) =>
+        item.hash.toLowerCase().includes(searchText.toLowerCase())
+    );
+
     const formatDate = (timestamp) => {
         const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
 
@@ -96,8 +106,18 @@ const FixedHeaderDatatables = () => {
     return (
         <DataTable
             columns={columns}
-            data={data}
+            data={filteredData}
             pagination
+            subHeader
+            subHeaderComponent={
+                <input
+                    type="text"
+                    placeholder="Tìm kiếm theo hash giao dịch..."
+                    value={searchText}
+                    onChange={(e) => handleSearch(e.target.value)}
+                    className="form-control form-control-sm"
+                />
+            }
         />
     );
 };

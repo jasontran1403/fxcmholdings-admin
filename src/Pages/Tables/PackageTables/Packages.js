@@ -28,6 +28,17 @@ const Packages = () => {
 const FixedHeaderDatatables = () => {
     const [data, setData] = useState([]);
 
+    const [searchText, setSearchText] = useState('');
+
+    const handleSearch = (text) => {
+        setSearchText(text);
+    };
+
+    const filteredData = data.filter((item) =>
+        (item.name && item.name.toLowerCase().includes(searchText.toLowerCase())) ||
+        (item.price && item.price.toLowerCase().includes(searchText.toLowerCase()))
+    );
+
     useEffect(() => {
         var myHeaders = new Headers();
         myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaXNzIjoiQURNSU5fTE9HSU4iLCJleHAiOjE3MDI2Njg3ODJ9.2uQJhG5z3Geh_ixW2h3vxdVEfWXU3P2yfODGOTX-Ju0");
@@ -98,8 +109,18 @@ const FixedHeaderDatatables = () => {
     return (
         <DataTable
             columns={columns}
-            data={data}
+            data={filteredData}
             pagination
+            subHeader
+            subHeaderComponent={
+                <input
+                    type="text"
+                    placeholder="Tìm kiếm theo tên gói đầu tư..."
+                    value={searchText}
+                    onChange={(e) => handleSearch(e.target.value)}
+                    className="form-control form-control-sm"
+                />
+            }
         />
     );
 };

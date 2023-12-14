@@ -25,6 +25,7 @@ const Accounts = () => {
 
 const FixedHeaderDatatables = () => {
     const [data, setData] = useState([]);
+    const [searchText, setSearchText] = useState('');
 
     useEffect(() => {
         var myHeaders = new Headers();
@@ -45,6 +46,16 @@ const FixedHeaderDatatables = () => {
             .catch(error => console.log('error', error));
 
     }, []);
+
+    const handleSearch = (text) => {
+        setSearchText(text);
+    };
+
+    const filteredData = data.filter((item) =>
+        item.username.toLowerCase().includes(searchText.toLowerCase()) ||
+        item.email.toLowerCase().includes(searchText.toLowerCase()) ||
+        item.rootUsername.toLowerCase().includes(searchText.toLowerCase())
+    );
 
     const columns = [
         {
@@ -110,8 +121,18 @@ const FixedHeaderDatatables = () => {
     return (
         <DataTable
             columns={columns}
-            data={data}
+            data={filteredData}
             pagination
+            subHeader
+            subHeaderComponent={
+                <input
+                    type="text"
+                    placeholder="Tìm kiếm theo tên hoặc email hoặc người giới thiệu..."
+                    value={searchText}
+                    onChange={(e) => handleSearch(e.target.value)}
+                    className="form-control form-control-sm"
+                />
+            }
         />
     );
 };

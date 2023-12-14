@@ -25,6 +25,17 @@ const Kyc = () => {
 
 const FixedHeaderDatatables = () => {
     const [data, setData] = useState([]);
+    const [searchText, setSearchText] = useState('');
+
+    const handleSearch = (text) => {
+        setSearchText(text);
+    };
+
+    const filteredData = data.filter((item) =>
+        (item.username && item.username.toLowerCase().includes(searchText.toLowerCase())) ||
+        (item.email && item.email.toLowerCase().includes(searchText.toLowerCase())) ||
+        (item.identityNumber && item.identityNumber.toLowerCase().includes(searchText.toLowerCase()))
+    );
 
     useEffect(() => {
         var myHeaders = new Headers();
@@ -102,8 +113,18 @@ const FixedHeaderDatatables = () => {
     return (
         <DataTable
             columns={columns}
-            data={data}
+            data={filteredData}
             pagination
+            subHeader
+            subHeaderComponent={
+                <input
+                    type="text"
+                    placeholder="Tìm kiếm theo username hoặc email hoặc số CMND/CCCD..."
+                    value={searchText}
+                    onChange={(e) => handleSearch(e.target.value)}
+                    className="form-control form-control-sm"
+                />
+            }
         />
     );
 };
