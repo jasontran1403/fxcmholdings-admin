@@ -50,7 +50,6 @@ const FixedHeaderDatatables = () => {
             .then(response => response.json())
             .then(result => {
                 setData(result);
-                console.log(result);
             })
             .catch(error => console.log('error', error));
 

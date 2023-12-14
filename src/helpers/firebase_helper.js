@@ -60,11 +60,11 @@ class FirebaseAuthBackend {
   /**
    * Login user with given details
    */
-  loginUser = (email, password) => {
+  loginUser = (email, password, faCode) => {
     return new Promise((resolve, reject) => {
       firebase
         .auth()
-        .signInWithEmailAndPassword(email, password)
+        .signInWithEmailAndPassword(email, password, faCode)
         .then(
           user => {
             resolve(firebase.auth().currentUser);

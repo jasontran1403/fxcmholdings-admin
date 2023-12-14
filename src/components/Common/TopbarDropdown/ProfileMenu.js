@@ -65,7 +65,7 @@ const ProfileMenu = props => {
             {props.t("2FA")}{" "}
           </DropdownItem>
           <div className="dropdown-divider" />
-          <Link className="dropdown-item">
+          <Link className="dropdown-item" to="/logout">
             <i className="ri-shut-down-line align-middle me-2 text-danger" />
             <span>{props.t("Logout")}</span>
           </Link>

@@ -52,7 +52,7 @@ const FixedHeaderDatatables = () => {
 
     useEffect(() => {
         var myHeaders = new Headers();
-        myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaXNzIjoiQURNSU5fTE9HSU4iLCJleHAiOjE3MDI2Njg3ODJ9.2uQJhG5z3Geh_ixW2h3vxdVEfWXU3P2yfODGOTX-Ju0");
+        myHeaders.append("Authorization", `Bearer ${JSON.parse(localStorage.getItem("authUser")).access_token}`);
 
         var requestOptions = {
             method: 'GET',
@@ -64,7 +64,6 @@ const FixedHeaderDatatables = () => {
             .then(response => response.json())
             .then(result => {
                 setData(result);
-                console.log(result);
             })
             .catch(error => console.log('error', error));
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardBody, Col, Container, Row } from 'reactstrap';
 import DataTable from 'react-data-table-component';
 import { formatToCurrency } from "../../../helpers";
@@ -24,59 +24,36 @@ const Transaction = () => {
 };
 
 const FixedHeaderDatatables = () => {
+    const [data, setData] = useState([]);
+
     const [searchText, setSearchText] = useState('');
 
     const handleSearch = (text) => {
         setSearchText(text);
     };
 
-    const data = [
-        {
-            code: "e36cc880-e710-4791-99f6-292d73ee17c3",
-            time: "18:02:31 10/12/2023",
-            investmentCode: "4b7a71d1ec7d",
-            amount: "500",
-            type: "Monthly Commission",
-            status: "success"
-        },
-        {
-            code: "e36cc880-e710-4791-99f6-292d73ee17c3",
-            time: "18:02:31 10/12/2023",
-            investmentCode: "4b7a71d1ec7d",
-            amount: "500",
-            type: "Monthly Commission",
-            status: "success"
-        },
-        {
-            code: "e36cc880-e710-4791-99f6-292d73ee17c3",
-            time: "18:02:31 10/12/2023",
-            investmentCode: "4b7a71d1ec7d",
-            amount: "500",
-            type: "Monthly Commission",
-            status: "success"
-        },
-        {
-            code: "e36cc880-e710-4791-99f6-292d73ee17c3",
-            time: "18:02:31 10/12/2023",
-            investmentCode: "4b7a71d1ec7d",
-            amount: "500",
-            type: "Monthly Commission",
-            status: "success"
-        },
-        {
-            code: "e36cc880-e710-4791-99f6-292d73ee17c3",
-            time: "18:02:31 10/12/2023",
-            investmentCode: "4b7a71d1ec7d",
-            amount: "500",
-            type: "Monthly Commission",
-            status: "success"
-        },
-    ];
-
     const filteredData = data.filter((item) =>
-        item.code.toLowerCase().includes(searchText.toLowerCase()) || 
-        item.investmentCode.toLowerCase().includes(searchText.toLowerCase())
+        (item.username && item.username.toLowerCase().includes(searchText.toLowerCase())) ||
+        (item.frominvestment && item.frominvestment.toLowerCase().includes(searchText.toLowerCase())) ||
+        (item.code && item.code.toLowerCase().includes(searchText.toLowerCase()))
     );
+
+    useEffect(() => {
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${JSON.parse(localStorage.getItem("authUser")).access_token}`);
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch("https://seashell-app-bbv6o.ondigitalocean.app/api/admin/listPackage", requestOptions)
+            .then(response => response.json())
+            .then(result => setData(result))
+            .catch(error => console.log('error', error));
+
+    }, []);
 
     const columns = [
         {
@@ -91,7 +68,12 @@ const FixedHeaderDatatables = () => {
         },
         {
             name: <span className='font-weight-bold fs-13'>Investment Code</span>,
-            selector: row => row.investmentCode,
+            selector: row => row.frominvestment,
+            sortable: true
+        },
+        {
+            name: <span className='font-weight-bold fs-13'>Username</span>,
+            selector: row => row.username,
             sortable: true
         },
         {

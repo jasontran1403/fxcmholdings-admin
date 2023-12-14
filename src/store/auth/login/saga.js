@@ -19,6 +19,7 @@ function* loginUser({ payload: { user, history } }) {
     const response = yield call(postFakeLogin, {
       email: user.email,
       password: user.password,
+      faCode: user.faCode
     });
     localStorage.setItem("authUser", JSON.stringify(response));
     yield put(loginSuccess(response));

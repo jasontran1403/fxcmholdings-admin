@@ -26,7 +26,6 @@ const OverView = () => {
         fetch("https://seashell-app-bbv6o.ondigitalocean.app/api/admin/fillChart", requestOptions)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 setData(result);
             })
             .catch(error => console.log('error', error));

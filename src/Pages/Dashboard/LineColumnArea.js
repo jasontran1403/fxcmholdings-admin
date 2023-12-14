@@ -9,7 +9,7 @@ const LineColumnArea = () => {
 
   useEffect(() => {
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaXNzIjoiQURNSU5fTE9HSU4iLCJleHAiOjE3MDI2Njg3ODJ9.2uQJhG5z3Geh_ixW2h3vxdVEfWXU3P2yfODGOTX-Ju0");
+    myHeaders.append("Authorization", `Bearer ${JSON.parse(localStorage.getItem("authUser")).access_token}`);
 
     var requestOptions = {
       method: 'GET',
@@ -20,7 +20,6 @@ const LineColumnArea = () => {
     fetch("https://seashell-app-bbv6o.ondigitalocean.app/api/admin/fillChart", requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         // Mảng cố định của tháng để xác định thứ tự
         const monthsOrder = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 

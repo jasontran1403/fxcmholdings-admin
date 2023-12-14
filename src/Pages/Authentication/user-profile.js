@@ -42,6 +42,7 @@ const UserProfile = () => {
   const [secret, setSecret] = useState("");
   const [isEnable, setIsEnable] = useState("false");
   const [faCode, setFaCode] = useState("");
+  const [url, setUrl] = useState("");
 
   const toggleToast1 = () => {
     settoast1(!toast1);
@@ -53,7 +54,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaXNzIjoiQURNSU5fTE9HSU4iLCJleHAiOjE3MDI2Njg3ODJ9.2uQJhG5z3Geh_ixW2h3vxdVEfWXU3P2yfODGOTX-Ju0");
+    myHeaders.append("Authorization", `Bearer ${JSON.parse(localStorage.getItem("authUser")).access_token}`);
 
     var requestOptions = {
       method: 'GET',
@@ -97,8 +98,8 @@ const UserProfile = () => {
     }),
     onSubmit: (values) => {
       var myHeaders = new Headers();
-      myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaXNzIjoiQURNSU5fTE9HSU4iLCJleHAiOjE3MDI2Njg3ODJ9.2uQJhG5z3Geh_ixW2h3vxdVEfWXU3P2yfODGOTX-Ju0");
-
+      myHeaders.append("Authorization", `Bearer ${JSON.parse(localStorage.getItem("authUser")).access_token}`);
+      
       var formdata = new FormData();
       formdata.append("username", name);
       formdata.append("code", values.faCode);
@@ -109,14 +110,9 @@ const UserProfile = () => {
         body: formdata,
         redirect: 'follow'
       };
+
       
-      var url = "";
-      if (isEnable) {
-        url = "https://seashell-app-bbv6o.ondigitalocean.app/api/authentication/disabled"
-      } else {
-        url = "https://seashell-app-bbv6o.ondigitalocean.app/api/authentication/enabled";
-      }
-      fetch(url, requestOptions)
+      fetch("https://seashell-app-bbv6o.ondigitalocean.app/api/authentication/enabled", requestOptions)
         .then(response => response.text())
         .then(result => {
           if (result === "success") {
@@ -128,7 +124,45 @@ const UserProfile = () => {
         .catch(error => console.log('error', error));
     },
   });
-  console.log(isEnable);
+
+  const validationDisabled = useFormik({
+    // enableReinitialize : use this flag when initial values needs to be changed
+    enableReinitialize: true,
+
+    initialValues: {
+      faCode: faCode || ""
+    },
+    validationSchema: Yup.object({
+      faCode: Yup.string().required("Please enter 2fa code"),
+    }),
+    onSubmit: (values) => {
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer ${JSON.parse(localStorage.getItem("authUser")).access_token}`);
+
+      var formdata = new FormData();
+      formdata.append("username", name);
+      formdata.append("code", values.faCode);
+
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: formdata,
+        redirect: 'follow'
+      };
+
+      
+      fetch("https://seashell-app-bbv6o.ondigitalocean.app/api/authentication/disabled", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+          if (result === "success") {
+            window.location.reload();
+          } else if (result === "failed") {
+            toggleToast1();
+          }
+        })
+        .catch(error => console.log('error', error));
+    },
+  });
 
   return (
     <React.Fragment>
@@ -151,7 +185,7 @@ const UserProfile = () => {
                   className="form-horizontal"
                   onSubmit={(e) => {
                     e.preventDefault();
-                    validation.handleSubmit();
+                    validationDisabled.handleSubmit();
                     return false;
                   }}
                 >
@@ -163,20 +197,20 @@ const UserProfile = () => {
                       className="form-control"
                       placeholder="Enter 2fa code"
                       type="text"
-                      onChange={validation.handleChange}
-                      onBlur={validation.handleBlur}
-                      value={validation.values.faCode || ""}
+                      onChange={validationDisabled.handleChange}
+                      onBlur={validationDisabled.handleBlur}
+                      value={validationDisabled.values.faCode || ""}
                       invalid={
-                        validation.touched.faCode &&
-                          validation.errors.faCode
+                        validationDisabled.touched.faCode &&
+                        validationDisabled.errors.faCode
                           ? true
                           : false
                       }
                     />
-                    {validation.touched.faCode &&
-                      validation.errors.faCode ? (
+                    {validationDisabled.touched.faCode &&
+                      validationDisabled.errors.faCode ? (
                       <FormFeedback type="invalid">
-                        <div>{validation.errors.faCode}</div>
+                        <div>{validationDisabled.errors.faCode}</div>
                       </FormFeedback>
                     ) : null}
                   </div>
