@@ -51,6 +51,12 @@ const SidebarData = [
         isHasArrow: true,
         url: "/packages",
     },
+    {
+        label: "Transfer",
+        icon: "mdi mdi-math-norm-box",
+        isHasArrow: true,
+        url: "/transfer",
+    },
     // {
     //     label: "Email",
     //     icon: "mdi mdi-email-outline",

@@ -37,7 +37,7 @@ axios.interceptors.response.use(
  * @param {*} token
  */
 const setAuthorization = (token) => {
-  axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+  axios.defaults.headers.common["Authorization"] = `Bearer ${JSON.parse(localStorage.getItem("authUser")).access_token}`;
 };
 
 class APIClient {

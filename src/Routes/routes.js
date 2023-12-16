@@ -80,6 +80,7 @@ import DepositTable from "../Pages/Tables/DepositTables/Deposits";
 import WithdrawTable from "../Pages/Tables/WithdrawTables/Withdraw";
 import PackageTable from "../Pages/Tables/PackageTables/Packages";
 import KycTable from "../Pages/Tables/KycTables/Kyc";
+import Transfer from "../Pages/Tables/TransferTables/Transfer";
 
 // Import Charts
 import ApexCharts from "../Pages/Charts/ApexCharts";
@@ -129,6 +130,9 @@ const authProtectedRoutes = [
 
   // Profile
   { path: "/2fa", component: <UserProfile /> },
+
+  // Profile
+  { path: "/transfer", component: <Transfer /> },
 
   // E-mail
   { path: "/inbox", component: <Inbox /> },
