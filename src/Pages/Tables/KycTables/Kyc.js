@@ -40,14 +40,23 @@ const FixedHeaderDatatables = () => {
     const [image4, setImage4] = useState("");
     const [toast1, settoast1] = useState(false);
     const [messageContent, setMessageContent] = useState("");
+    const [currentUserData, setCurrentUserData] = useState(null);
+
 
     const handleStatusChange = (event) => {
         const selectedValue = event.target.value;
         setStatus(parseInt(selectedValue, 10)); // Chuyển đổi giá trị sang số nguyên
     };
 
+    const openImageInNewTab = (imageUrl) => {
+        if (imageUrl) {
+            window.open(imageUrl, "_blank");
+        }
+    };
+
     const clodeModal = () => {
         setmodal_backdrop1(!modal_backdrop1);
+        setCurrentUserData(null);
     }
 
     const toggleToast1 = content => {
@@ -61,17 +70,17 @@ const FixedHeaderDatatables = () => {
     };
 
     const tog_backdrop1 = username => {
-        setUsernameKyc(username);
-        if (username !== "") {
+        if (username) {
+            setUsernameKyc(username);
             var myHeaders = new Headers();
             myHeaders.append("Authorization", `Bearer ${JSON.parse(localStorage.getItem("authUser")).access_token}`);
-
+        
             var requestOptions = {
                 method: 'GET',
                 headers: myHeaders,
                 redirect: 'follow'
             };
-
+        
             fetch(`https://seashell-app-bbv6o.ondigitalocean.app/api/admin/getKycImage/${username}`, requestOptions)
                 .then(response => response.json())
                 .then(result => {
@@ -79,11 +88,17 @@ const FixedHeaderDatatables = () => {
                     setImage2(result[1]);
                     setImage3(result[2]);
                     setImage4(result[3]);
+        
+                    setCurrentUserData(result); // Lưu trữ dữ liệu vào state mới
                 })
                 .catch(error => console.log('error', error));
+            setmodal_backdrop1(!modal_backdrop1);
+        } else {
+            setmodal_backdrop1(!modal_backdrop1);
         }
-        setmodal_backdrop1(!modal_backdrop1);
     }
+    
+    
 
     const handleSearch = (text) => {
         setSearchText(text);
@@ -228,6 +243,12 @@ const FixedHeaderDatatables = () => {
                                                 <div className="mb-3">
                                                     <Slidewithfade image1={image1} image2={image2} image3={image3} image4={image4} />
                                                 </div>
+                                                {image1 && image2 && image3 && image4 ? <div className="mb-3" style={{ display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                    <p className="btn btn-info" onClick={(e) => {openImageInNewTab(image1)}}>Ảnh 1</p>
+                                                    <p className="btn btn-info" onClick={(e) => {openImageInNewTab(image2)}}>Ảnh 2</p>
+                                                    <p className="btn btn-info" onClick={(e) => {openImageInNewTab(image3)}}>Ảnh 3</p>
+                                                    <p className="btn btn-info" onClick={(e) => {openImageInNewTab(image4)}}>Ảnh 4</p>
+                                                </div> : <></>}
                                                 <div className="mb-3">
                                                     <label
                                                         htmlFor="message-text"
