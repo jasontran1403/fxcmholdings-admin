@@ -4,6 +4,9 @@ import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from
 import DataTable from 'react-data-table-component';
 
 const Accounts = () => {
+    var body = document.body;
+    body.classList.remove("sidebar-enable");
+    
     return (
         <React.Fragment>
             <div className="page-content">
@@ -90,7 +93,7 @@ const FixedHeaderDatatables = () => {
                     case false:
                         return <span className="badge badge-soft-success"> {cell.locked !== true ? "Available" : "Locked"} </span>;
                     case true:
-                        return <span className="badge badge-soft-danger"> {cell.locked  !== true ? "Available" : "Locked"} </span>;
+                        return <span className="badge badge-soft-danger"> {cell.locked !== true ? "Available" : "Locked"} </span>;
                     default:
                         return <span className="badge badge-soft-success"> {cell.locked ? "Available" : "Locked"} </span>;
                 }

@@ -7,7 +7,7 @@ import { Container, Row, Col, Card, CardBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
-    document.title = "Register | Upzet - React Admin & Dashboard Template";
+    document.title = "Register | FXCM Holdings - Admin Dashboard";
     return (
         <React.Fragment>
 
@@ -27,7 +27,7 @@ const Register = () => {
                                         </div>
 
                                         <h4 className="font-size-18 text-muted text-center mt-2">Free Register</h4>
-                                        <p className="text-muted text-center mb-4">Get your free Upzet account now.</p>
+                                        <p className="text-muted text-center mb-4">Get your free FXCM Holdings account now.</p>
                                         <form className="form-horizontal" action="#">
 
                                             <Row>

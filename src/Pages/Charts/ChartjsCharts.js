@@ -15,7 +15,7 @@ import Breadcrumbs from "../../components/Common/Breadcrumb";
 
 
 const ChartJs = () => {
-    document.title = "Chartjs | Upzet - React Admin & Dashboard Template";
+    document.title = "Chartjs | FXCM Holdings - Admin Dashboard";
     return (
         <React.Fragment>
 

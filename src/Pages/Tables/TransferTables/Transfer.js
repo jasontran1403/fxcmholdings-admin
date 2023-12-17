@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardBody, Col, Container, Row, CardTitle } from 'reactstrap';
+import { Card, CardBody, Col, Container, Row, CardTitle, Toast, ToastHeader, ToastBody } from 'reactstrap';
 import DataTable from 'react-data-table-component';
 import { formatToCurrency } from "../../../helpers";
+import logo from "../../../assets/images/logo-sm.png";
 
 const Transfer = () => {
+    var body = document.body;
+    body.classList.remove("sidebar-enable");
+
     return (
         <React.Fragment>
             <div className="page-content">
@@ -27,6 +31,24 @@ const FixedHeaderDatatables = () => {
     const [data, setData] = useState([]);
     const [username, setUsername] = useState("");
     const [amount, setAmount] = useState(0);
+    const [toast1, settoast1] = useState(false);
+    const [message, setMessage] = useState("");
+
+    const toggleToast1 = content => {
+        settoast1(!toast1);
+        setMessage(content);
+
+        if (content === "Chuyển điểm nội bộ thành công!") {
+            setTimeout(() => {
+                settoast1(!toast1);
+                window.location.reload();
+            }, 1500);
+        } else {
+            setTimeout(() => {
+                settoast1(false);
+            }, 1500);
+        }
+    };
 
     const handleTransfer = () => {
         if (username === "") {
@@ -59,11 +81,11 @@ const FixedHeaderDatatables = () => {
             .then(response => response.text())
             .then(result => {
                 if (result === "success") {
-                    alert("Chuyển điểm nội bộ thành công!");
+                    toggleToast1("Chuyển điểm nội bộ thành công!");
                 } else if (result === "not existed") {
-                    alert("username không tồn tại!");
+                    toggleToast1("Username người nhận không tồn tại!");
                 } else if (result === "amount not valid") {
-                    alert("số điểm không hợp lệ!");
+                    toggleToast1("Số điểm không hợp lệ!");
                 }
             })
             .catch(error => console.log('error', error));
@@ -197,6 +219,25 @@ const FixedHeaderDatatables = () => {
                         </Card>
                     </Col>
                 </Row>
+                <div
+                    className="position-fixed top-0 end-0 p-3"
+                    style={{ zIndex: "1005" }}
+                >
+                    <Toast isOpen={toast1}>
+                        <ToastHeader>
+                            <img
+                                src={logo}
+                                alt=""
+                                className="me-2"
+                                height="18"
+                            />
+                            FXCM Holdings
+                        </ToastHeader>
+                        <ToastBody color="success">
+                            {message}
+                        </ToastBody>
+                    </Toast>
+                </div>
             </Container>
         </div>
     );

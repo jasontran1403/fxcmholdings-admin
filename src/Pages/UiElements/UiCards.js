@@ -40,7 +40,7 @@ const UiCards = () => {
     700: 2,
     500: 1
   };
-  document.title = "Cards | Upzet - React Admin & Dashboard Template";
+  document.title = "Cards | FXCM Holdings - Admin Dashboard";
 
   return (
     <React.Fragment>
@@ -51,7 +51,7 @@ const UiCards = () => {
           <Row>
             <Col mg={6} xl={3}>
               <Card>
-                <CardImg top className="img-fluid" src={img1} alt="Upzet" />
+                <CardImg top className="img-fluid" src={img1} alt="FXCM Holdings" />
                 <CardBody>
                   <CardTitle className="mt-0">Card title</CardTitle>
                   <CardText>
@@ -69,7 +69,7 @@ const UiCards = () => {
             </Col>
             <Col mg={6} xl={3}>
               <Card>
-                <CardImg top className="img-fluid" src={img2} alt="Upzet" />
+                <CardImg top className="img-fluid" src={img2} alt="FXCM Holdings" />
                 <CardBody>
                   <CardTitle className="mt-0">Card title</CardTitle>
                   <CardText>
@@ -94,7 +94,7 @@ const UiCards = () => {
 
             <Col mg={6} xl={3}>
               <Card>
-                <CardImg top className="img-fluid" src={img3} alt="Upzet" />
+                <CardImg top className="img-fluid" src={img3} alt="FXCM Holdings" />
                 <CardBody>
                   <CardText>
                     Some quick example text to build on the card title and make
@@ -111,7 +111,7 @@ const UiCards = () => {
                     Support card subtitle
                   </CardSubtitle>
                 </CardBody>
-                <CardImg className="img-fluid" src={img4} alt="Upzet" />
+                <CardImg className="img-fluid" src={img4} alt="FXCM Holdings" />
                 <CardBody>
                   <CardText>
                     Some quick example text to build on the card title and make
@@ -274,7 +274,7 @@ const UiCards = () => {
           <Row>
             <Col lg={4}>
               <Card>
-                <CardImg top className="img-fluid" src={img5} alt="Upzet" />
+                <CardImg top className="img-fluid" src={img5} alt="FXCM Holdings" />
                 <CardBody>
                   <CardTitle className="mt-0">Card title</CardTitle>
                   <CardText>
@@ -306,13 +306,13 @@ const UiCards = () => {
                     </small>
                   </CardText>
                 </CardBody>
-                <CardImg bottom className="img-fluid" src={img7} alt="Upzet" />
+                <CardImg bottom className="img-fluid" src={img7} alt="FXCM Holdings" />
               </Card>
             </Col>
 
             <Col lg={4}>
               <Card>
-                <CardImg className="img-fluid" src={img6} alt="Upzet" />
+                <CardImg className="img-fluid" src={img6} alt="FXCM Holdings" />
                 <CardImgOverlay>
                   <CardTitle className="text-white mt-0">Card title</CardTitle>
                   <CardText className="text-light">
@@ -335,7 +335,7 @@ const UiCards = () => {
               <Card>
                 <Row className="no-gutters align-items-center">
                   <Col md={4}>
-                    <CardImg className="img-fluid" src={img2} alt="Upzet" />
+                    <CardImg className="img-fluid" src={img2} alt="FXCM Holdings" />
                   </Col>
                   <Col md={8}>
                     <CardBody>
@@ -372,7 +372,7 @@ const UiCards = () => {
                     </CardBody>
                   </Col>
                   <Col md={4}>
-                    <CardImg className="img-fluid" src={img3} alt="Upzet" />
+                    <CardImg className="img-fluid" src={img3} alt="FXCM Holdings" />
                   </Col>
                 </Row>
               </Card>
@@ -526,7 +526,7 @@ const UiCards = () => {
               <CardDeck className="card-deck-wrapper">
                 <div className="card-group">
                   <Card className="mb-4">
-                    <CardImg top className="img-fluid" src={img4} alt="Upzet" />
+                    <CardImg top className="img-fluid" src={img4} alt="FXCM Holdings" />
                     <CardBody>
                       <CardTitle className="mt-0">Card title</CardTitle>
                       <CardText>
@@ -542,7 +542,7 @@ const UiCards = () => {
                     </CardBody>
                   </Card>
                   <Card className="mb-4">
-                    <CardImg top className="img-fluid" src={img5} alt="Upzet" />
+                    <CardImg top className="img-fluid" src={img5} alt="FXCM Holdings" />
                     <CardBody>
                       <CardTitle className="mt-0">Card title</CardTitle>
                       <CardText>
@@ -557,7 +557,7 @@ const UiCards = () => {
                     </CardBody>
                   </Card>
                   <Card className="mb-4">
-                    <CardImg top className="img-fluid" src={img6} alt="Upzet" />
+                    <CardImg top className="img-fluid" src={img6} alt="FXCM Holdings" />
                     <CardBody>
                       <CardTitle className="mt-0">Card title</CardTitle>
                       <CardText>

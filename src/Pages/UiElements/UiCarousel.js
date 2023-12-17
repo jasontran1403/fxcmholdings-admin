@@ -22,7 +22,7 @@ import Slideinterval from "./CarouselTypes/slideinterval";
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 
 const UiCarousel = () => {
-  document.title = "Carousel | Upzet - React Admin & Dashboard Template";
+  document.title = "Carousel | FXCM Holdings - Admin Dashboard";
 
   return (
     <React.Fragment>

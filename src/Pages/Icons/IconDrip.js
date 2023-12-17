@@ -6,7 +6,7 @@ import { Card, CardBody, CardTitle, Col, Container, Row } from "reactstrap";
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 
 const IconDripicons = () => {
-  document.title = "Drip Icons | Upzet - React Admin & Dashboard Template";
+  document.title = "Drip Icons | FXCM Holdings - Admin Dashboard";
   return (
     <React.Fragment>
       <div className="page-content">

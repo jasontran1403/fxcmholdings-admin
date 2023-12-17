@@ -13,7 +13,11 @@ import { Row, Container } from "reactstrap";
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 
 const Dashboard = () => {
-  document.title = "Dashboard | Upzet - React Admin & Dashboard Template";
+  document.title = "Dashboard | FXCM Holdings - Admin Dashboard";
+
+  var body = document.body;
+  body.classList.remove("sidebar-enable");
+
   return (
     <React.Fragment>
       <div className="page-content">
@@ -24,7 +28,7 @@ const Dashboard = () => {
           <OverView />
           <Row>
             {/* Overview Chart */}
-            
+
             {/* Social Source Chart */}
             {/* <SocialSource /> */}
           </Row>

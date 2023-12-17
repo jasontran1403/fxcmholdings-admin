@@ -9,7 +9,7 @@ import Countdown from "react-countdown";
 import { Link } from "react-router-dom";
 
 const ComingSoon = () => {
-  document.title = "Cooming Soon  | Upzet - React Admin & Dashboard Template";
+  document.title = "Cooming Soon  | FXCM Holdings - Admin Dashboard";
   // const renderer = ({ days, hours, minutes, seconds, completed }) => {
   //   if (completed) {
   //     // Render a completed state
@@ -89,11 +89,11 @@ const ComingSoon = () => {
                     </Link>
 
                     <h5 className="font-size-16 text-white-50 mb-4">
-                      Responsive Bootstrap 5 Admin Dashboard
+                      FXCM Holdings Admin Dashboard
                     </h5>
 
                     <h4 className="text-white mt-5">
-                      Let's get started with Upzet
+                      Let's get started with FXCM Holdings
                     </h4>
                     <p className="text-white-50">
                       It will be as simple as Occidental in fact it will be

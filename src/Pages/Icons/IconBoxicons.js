@@ -14,7 +14,7 @@ var regularIcon = "";
 var logos = "";
 
 const IconBoxicons = (props) => {
-  document.title = "Boxicons | Upzet - React Admin & Dashboard Template";
+  document.title = "Boxicons | FXCM Holdings - Admin Dashboard";
 
   useEffect(() => {
     icons.data.forEach(function (val) {

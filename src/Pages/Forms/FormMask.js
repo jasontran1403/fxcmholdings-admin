@@ -16,7 +16,7 @@ import Breadcrumbs from "../../components/Common/Breadcrumb";
 import InputMask from "react-input-mask";
 
 const FormMask = () => {
-  document.title = "Form Mask | Upzet - React Admin & Dashboard Template";
+  document.title = "Form Mask | FXCM Holdings - Admin Dashboard";
 
 
   const DateStyle1 = (props) => (

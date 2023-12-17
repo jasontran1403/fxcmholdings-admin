@@ -38,7 +38,7 @@ const images = [img1, img2, img3, img4, img5, img6];
 const imageZoom = [img3, img7];
 
 const UiLightbox = () => {
-    document.title = "Lightbox | Upzet - React Admin & Dashboard Template";
+    document.title = "Lightbox | FXCM Holdings - Admin Dashboard";
 
     const [photoIndex, setphotoIndex] = useState(0);
     const [isFits, setisFits] = useState(false);
@@ -133,7 +133,7 @@ const UiLightbox = () => {
                                                         setisFits(true);
                                                     }}
                                                     className="img-fluid"
-                                                    alt="Upzet"
+                                                    alt="FXCM Holdings"
                                                     src={img2}
                                                     width="145"
                                                 />

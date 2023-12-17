@@ -19,7 +19,7 @@ import logo from "../../assets/images/logo-sm.png";
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 const UiToasts = () => {
-  document.title = "Toast | Upzet - React Admin & Dashboard Template";
+  document.title = "Toast | FXCM Holdings - Admin Dashboard";
 
   const [toast, settoast] = useState(false);
   const [toast1, settoast1] = useState(false);
@@ -102,7 +102,7 @@ const UiToasts = () => {
                     <Toast isOpen={toast4}>
                       <ToastHeader toggle={toggleToast4}>
                         <img src={logo} alt="" className="me-2" height="18" />
-                        Upzet
+                        FXCM Holdings
                       </ToastHeader>
                       <ToastBody color="primary">
                         Hello, world! This is a toast message.
@@ -129,7 +129,7 @@ const UiToasts = () => {
                     <Toast>
                       <ToastHeader>
                         <img src={logo} alt="" className="me-2" height="18" />
-                        Upzet
+                        FXCM Holdings
                       </ToastHeader>
                       <ToastBody>
                         Hello, world! This is a toast message.
@@ -154,7 +154,7 @@ const UiToasts = () => {
                     <Toast isOpen={toast5}>
                       <ToastHeader toggle={toggleToast5}>
                         <img src={logo} alt="" className="me-2" height="18" />
-                        <strong className="me-auto">Upzet</strong>
+                        <strong className="me-auto">FXCM Holdings</strong>
                         <small
                           className="text-muted"
                           style={{ marginLeft: "165px", fontWeight: "500" }}
@@ -198,7 +198,7 @@ const UiToasts = () => {
                                 className="me-2"
                                 height="18"
                               />
-                              <strong className="me-auto">Upzet</strong>
+                              <strong className="me-auto">FXCM Holdings</strong>
                               <small
                                 className="text-muted"
                                 style={{
@@ -223,7 +223,7 @@ const UiToasts = () => {
                                 className="me-2"
                                 height="18"
                               />
-                              <strong className="me-auto">Upzet</strong>
+                              <strong className="me-auto">FXCM Holdings</strong>
                               <small
                                 className="text-muted"
                                 style={{
@@ -295,7 +295,7 @@ const UiToasts = () => {
                           </Spinner>
                         }
                       >
-                        Upzet{" "}
+                        FXCM Holdings{" "}
                       </ToastHeader>
                       <ToastBody>
                         Hello, world! This is a toast message.
@@ -338,7 +338,7 @@ const UiToasts = () => {
                               className="me-2"
                               height="18"
                             />
-                            Upzet
+                            FXCM Holdings
                           </ToastHeader>
                           <ToastBody color="primary">
                             Hello, world! This is a toast message.
@@ -368,7 +368,7 @@ const UiToasts = () => {
                               className="me-2"
                               height="18"
                             />
-                            Upzet
+                            FXCM Holdings
                           </ToastHeader>
                           <ToastBody color="primary">
                             Hello, world! This is a toast message.
@@ -398,7 +398,7 @@ const UiToasts = () => {
                               className="me-2"
                               height="18"
                             />
-                            Upzet
+                            FXCM Holdings
                           </ToastHeader>
                           <ToastBody color="primary">
                             Hello, world! This is a toast message.
@@ -428,7 +428,7 @@ const UiToasts = () => {
                               className="me-2"
                               height="18"
                             />
-                            Upzet
+                            FXCM Holdings
                           </ToastHeader>
                           <ToastBody color="primary">
                             Hello, world! This is a toast message.

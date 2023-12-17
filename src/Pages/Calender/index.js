@@ -263,7 +263,7 @@ const Calender = (props) => {
     }
   };
 
-  document.title = "Calendar | Upzet - React Admin & Dashboard Template";
+  document.title = "Calendar | FXCM Holdings - Admin Dashboard";
   return (
     <React.Fragment>
       <DeleteModal
@@ -273,7 +273,7 @@ const Calender = (props) => {
       />
       <div className="page-content">
         <Container fluid={true}>
-          <Breadcrumbs title="Upzet" breadcrumbItem="Calendar" />
+          <Breadcrumbs title="FXCM_Holdings" breadcrumbItem="Calendar" />
           <Row className="mb-4">
             <Col xl={3}>
               <Card className="h-100">

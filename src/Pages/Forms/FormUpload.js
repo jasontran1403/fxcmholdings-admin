@@ -17,7 +17,7 @@ import Breadcrumbs from "../../components/Common/Breadcrumb"
 import { Link } from "react-router-dom"
 
 const FormUpload = () => {
-  document.title = "Form File Upload | Upzet - React Admin & Dashboard Template";
+  document.title = "Form File Upload | FXCM Holdings - Admin Dashboard";
   const [selectedFiles, setselectedFiles] = useState([])
 
   function handleAcceptedFiles(files) {

@@ -22,7 +22,7 @@ import {
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 const EmailCompose = () => {
-    document.title = "Email Compose  | Upzet - React Admin & Dashboard Template";
+    document.title = "Email Compose  | FXCM Holdings - Admin Dashboard";
 
     const [folderbtn, setfolderbtn] = useState(false);
     const [tagbtn, settagbtn] = useState(false);

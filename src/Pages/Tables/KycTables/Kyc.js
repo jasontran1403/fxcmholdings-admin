@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardBody, Col, Container, Row, Modal, CardSubtitle } from 'reactstrap';
-import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
+import { Card, CardBody, Col, Container, Row, Toast, ToastHeader, ToastBody, UncontrolledDropdown, DropdownToggle, Modal } from 'reactstrap';
 import DataTable from 'react-data-table-component';
 import Slidewithfade from "../../UiElements/CarouselTypes/slidewithfade";
+import logo from "../../../assets/images/logo-sm.png";
 
 const Kyc = () => {
+    var body = document.body;
+    body.classList.remove("sidebar-enable");
+
     return (
         <React.Fragment>
             <div className="page-content">
@@ -30,18 +33,35 @@ const FixedHeaderDatatables = () => {
     const [searchText, setSearchText] = useState('');
     const [message, setMessage] = useState();
     const [status, setStatus] = useState(0);
+    const [usernameKyc, setUsernameKyc] = useState("");
     const [image1, setImage1] = useState("");
     const [image2, setImage2] = useState("");
     const [image3, setImage3] = useState("");
     const [image4, setImage4] = useState("");
+    const [toast1, settoast1] = useState(false);
+    const [messageContent, setMessageContent] = useState("");
 
     const handleStatusChange = (event) => {
         const selectedValue = event.target.value;
-        console.log(selectedValue);
         setStatus(parseInt(selectedValue, 10)); // Chuyển đổi giá trị sang số nguyên
-      };
+    };
+
+    const clodeModal = () => {
+        setmodal_backdrop1(!modal_backdrop1);
+    }
+
+    const toggleToast1 = content => {
+        settoast1(!toast1);
+        setMessageContent(content);
+
+        setTimeout(() => {
+            settoast1(!toast1);
+            window.location.reload();
+        }, 1500);
+    };
 
     const tog_backdrop1 = username => {
+        setUsernameKyc(username);
         if (username !== "") {
             var myHeaders = new Headers();
             myHeaders.append("Authorization", `Bearer ${JSON.parse(localStorage.getItem("authUser")).access_token}`);
@@ -65,21 +85,42 @@ const FixedHeaderDatatables = () => {
         setmodal_backdrop1(!modal_backdrop1);
     }
 
-
     const handleSearch = (text) => {
         setSearchText(text);
     };
 
     const handleKyc = () => {
         if (status === 2 && message === "") {
-            alert("Vui lòng nhập thông tin lời nhắn");
-            return;
-        }
-        if (status === 0) {
+            alert("Vui lòng nhập lý do từ chối KYC");
             return;
         }
 
-        console.log({ message, status });
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `Bearer ${JSON.parse(localStorage.getItem("authUser")).access_token}`);
+
+        var raw = JSON.stringify({
+            "username": usernameKyc,
+            "message": message,
+            "status": status
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("https://seashell-app-bbv6o.ondigitalocean.app/api/admin/kyc", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                if (result === "declined" || result === "approved") {
+                    toggleToast1("Cập nhật KYC thành công!");
+                    clodeModal();
+                }
+            })
+            .catch(error => console.log('error', error));
     };
 
     const filteredData = data.filter((item) =>
@@ -145,11 +186,11 @@ const FixedHeaderDatatables = () => {
 
             cell: (cell) => {
                 return (
-                    <UncontrolledDropdown className="dropdown d-inline-block">
+                    <UncontrolledDropdown className="dropdown d-inline-block" onClick={() => {
+                        tog_backdrop1(cell.username);
+                    }} >
                         <DropdownToggle className="btn btn-soft-secondary btn-sm" tag="button">
-                            <i onClick={() => {
-                                tog_backdrop1(cell.username);
-                            }} className="ri-eye-fill align-bottom me-2 text-muted"></i>
+                            <i className="ri-eye-fill align-bottom me-2 text-muted"></i>
                         </DropdownToggle>
                     </UncontrolledDropdown>
                 );
@@ -230,71 +271,6 @@ const FixedHeaderDatatables = () => {
                                         </div>
                                     </Modal>
                                 </div>
-
-                                <div
-                                    className="modal fade"
-                                    id="exampleModal"
-                                    tabIndex="-1"
-                                    aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true"
-                                >
-                                    <div className="modal-dialog">
-                                        <div className="modal-content">
-                                            <div className="modal-header">
-                                                <h5 className="modal-title" id="exampleModalLabel">
-                                                    New message
-                                                </h5>
-                                                <button
-                                                    type="button"
-                                                    className="btn-close"
-                                                    data-bs-dismiss="modal"
-                                                    aria-label="Close"
-                                                ></button>
-                                            </div>
-                                            <div className="modal-body">
-                                                <form>
-                                                    <div className="mb-3">
-                                                        <label
-                                                            htmlFor="recipient-name"
-                                                            className="col-form-label"
-                                                        >
-                                                            Recipient:
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            className="form-control"
-                                                            id="recipient-name"
-                                                        />
-                                                    </div>
-                                                    <div className="mb-3">
-                                                        <label
-                                                            htmlFor="message-text"
-                                                            className="col-form-label"
-                                                        >
-                                                            Message:
-                                                        </label>
-                                                        <textarea
-                                                            className="form-control"
-                                                            id="message-text"
-                                                        ></textarea>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div className="modal-footer">
-                                                <button
-                                                    type="button"
-                                                    className="btn btn-secondary"
-                                                    data-bs-dismiss="modal"
-                                                >
-                                                    Close
-                                                </button>
-                                                <button type="button" className="btn btn-primary">
-                                                    Send message
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </CardBody>
 
@@ -303,6 +279,25 @@ const FixedHeaderDatatables = () => {
                 </Col>
 
             </Row>
+            <div
+                className="position-fixed top-0 end-0 p-3"
+                style={{ zIndex: "1005" }}
+            >
+                <Toast isOpen={toast1}>
+                    <ToastHeader>
+                        <img
+                            src={logo}
+                            alt=""
+                            className="me-2"
+                            height="18"
+                        />
+                        FXCM Holdings
+                    </ToastHeader>
+                    <ToastBody color="success">
+                        {messageContent}
+                    </ToastBody>
+                </Toast>
+            </div>
             <DataTable
                 columns={columns}
                 data={filteredData}

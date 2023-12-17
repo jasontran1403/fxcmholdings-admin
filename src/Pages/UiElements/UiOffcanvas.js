@@ -20,7 +20,7 @@ import {
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 
 const UiOffcanvas = () => {
-    document.title = "Offcanvas | Upzet - React Admin & Dashboard Template";
+    document.title = "Offcanvas | FXCM Holdings - Admin Dashboard";
 
     const [open, setOpen] = useState(false);
     const [isTop, setIsTop] = useState(false);

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Card, CardBody, Col, Container, Row, CardTitle, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
+import { Card, CardBody, Col, Container, Row, CardTitle, DropdownToggle, UncontrolledDropdown, Toast, ToastHeader, ToastBody } from 'reactstrap';
 import DataTable from 'react-data-table-component';
 import { formatToCurrency } from "../../../helpers";
+import logo from "../../../assets/images/logo-sm.png";
 
 const Packages = () => {
+    var body = document.body;
+    body.classList.remove("sidebar-enable");
+    
     return (
         <React.Fragment>
             <div className="page-content">
@@ -31,6 +35,8 @@ const FixedHeaderDatatables = () => {
     const [direct, setDirect] = useState(0);
     const [price, setPrice] = useState(0);
     const [daily, setDaily] = useState(0);
+    const [toast1, settoast1] = useState(false);
+    const [message, setMessage] = useState("");
 
     const [searchText, setSearchText] = useState('');
 
@@ -38,27 +44,43 @@ const FixedHeaderDatatables = () => {
         setSearchText(text);
     };
 
+    const toggleToast1 = content => {
+        settoast1(!toast1);
+        setMessage(content);
+
+        if (content === "Tạo mới gói thành công" || content === "Cập nhật trạng thái thành công") {
+            setTimeout(() => {
+                settoast1(!toast1);
+                window.location.reload();
+            }, 1500);
+        } else {
+            setTimeout(() => {
+                settoast1(false);
+            }, 1500);
+        }
+    };
+
     const handleTogglePack = id => {
         var myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${JSON.parse(localStorage.getItem("authUser")).access_token}`);
-    
+
         var formdata = new FormData();
         formdata.append("packageId", id);
-    
+
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,
             body: formdata,
             redirect: 'follow'
         };
-    
+
         fetch("https://seashell-app-bbv6o.ondigitalocean.app/api/admin/togglePack", requestOptions)
             .then(response => response.text())
             .then(result => {
                 if (result === "not existed") {
-                    alert("Gói này không tồn tại");
+                    toggleToast1("Gói này không tồn tại");
                 } else if (result === "ok") {
-                    alert("Cập nhật trạng thái thành công");
+                    toggleToast1("Cập nhật trạng thái thành công");
                 }
             })
             .catch(error => console.log('error', error));
@@ -66,14 +88,15 @@ const FixedHeaderDatatables = () => {
 
     const handleAddPack = () => {
         if (packageName === "") {
-            alert("Vui lòng nhập tên gói!");
+            toggleToast1("Vui lòng nhập tên gói!");
             return;
         }
         if (typeof direct !== 'number' || isNaN(direct) || typeof price !== 'number' || isNaN(price) || typeof daily !== 'number' || isNaN(daily)) {
-            alert("Thông tin phải là số!");
+        
+            toggleToast1("Thông tin phải là số!");
             return;
         } else if (direct <= 0 || price <= 0 || daily <= 0) {
-            alert("Vui lòng nhập thông tin là số > 0!");
+            toggleToast1("Vui lòng nhập thông tin là số > 0!");
             return;
         }
 
@@ -93,15 +116,15 @@ const FixedHeaderDatatables = () => {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:8080/api/admin/addPack", requestOptions)
+        fetch("https://seashell-app-bbv6o.ondigitalocean.app/api/admin/addPack", requestOptions)
             .then(response => response.text())
             .then(result => {
                 if (result === "trung ten") {
-                    alert("Gói này đã tồn tại");
+                    toggleToast1("Gói này đã tồn tại");
                 } else if (result === "number invalid") {
-                    alert("Thông số không hợp lệ");
+                    toggleToast1("Thông số không hợp lệ");
                 } else if (result === "ok") {
-                    alert("Tạo mới gói thành công");
+                    toggleToast1("Tạo mới gói thành công");
                 }
             })
             .catch(error => console.log('error', error));
@@ -172,7 +195,7 @@ const FixedHeaderDatatables = () => {
                 return (
                     <UncontrolledDropdown className="dropdown d-inline-block">
                         <DropdownToggle className="btn btn-soft-secondary btn-sm" tag="button">
-                            <i onClick={(e) => {handleTogglePack(cell.id)}} className="bx bx-toggle-right"></i>
+                            <i onClick={(e) => { handleTogglePack(cell.id) }} className="bx bx-toggle-right"></i>
                         </DropdownToggle>
                     </UncontrolledDropdown>
                 );
@@ -301,6 +324,25 @@ const FixedHeaderDatatables = () => {
                         </Card>
                     </Col>
                 </Row>
+                <div
+                    className="position-fixed top-0 end-0 p-3"
+                    style={{ zIndex: "1005" }}
+                >
+                    <Toast isOpen={toast1}>
+                        <ToastHeader>
+                            <img
+                                src={logo}
+                                alt=""
+                                className="me-2"
+                                height="18"
+                            />
+                            FXCM Holdings
+                        </ToastHeader>
+                        <ToastBody color="success">
+                            {message}
+                        </ToastBody>
+                    </Toast>
+                </div>
             </Container>
         </div>
 

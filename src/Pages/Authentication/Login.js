@@ -27,7 +27,7 @@ import { loginUser, socialLogin } from "../../store/actions";
 import { facebook, google } from "../../config";
 
 const Login = props => {
-  document.title = "Login | Upzet - React Admin & Dashboard Template";
+  document.title = "Login | FXCM Holdings - Admin Dashboard";
   const [errorMessage, setErrorMessage] = useState("");
 
   const dispatch = useDispatch();
@@ -144,7 +144,7 @@ const Login = props => {
                       Welcome Back !
                     </h4>
                     <p className="mb-5 text-center">
-                      Sign in to continue to Upzet.
+                      Sign in to continue to FXCM Holdings.
                     </p>
                     <Form
                       className="form-horizontal"

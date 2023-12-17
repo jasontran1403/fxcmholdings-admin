@@ -4,6 +4,9 @@ import DataTable from 'react-data-table-component';
 import { formatToCurrency } from "../../../helpers";
 
 const Withdraw = () => {
+    var body = document.body;
+    body.classList.remove("sidebar-enable");
+
     return (
         <React.Fragment>
             <div className="page-content">
@@ -50,7 +53,7 @@ const FixedHeaderDatatables = () => {
 
         return new Intl.DateTimeFormat('en-GB', options).format(date);
     };
-    
+
     useEffect(() => {
         var myHeaders = new Headers();
         myHeaders.append("Authorization", `Bearer ${JSON.parse(localStorage.getItem("authUser")).access_token}`);
@@ -97,7 +100,7 @@ const FixedHeaderDatatables = () => {
         },
         {
             name: <span className='font-weight-bold fs-13'>Hash</span>,
-            selector: row => {if (row.hash) return <a target="_blank" rel="noreferrer" href={`https://bscscan.com/tx/${row.hash}`}>Hash</a>},
+            selector: row => { if (row.hash) return <a target="_blank" rel="noreferrer" href={`https://bscscan.com/tx/${row.hash}`}>Hash</a> },
             sortable: true
         },
     ];

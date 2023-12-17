@@ -14,7 +14,7 @@ import {
   Label,
   Input,
   FormFeedback,
-  Form,
+  Form
 } from "reactstrap";
 
 import logo from "../../assets/images/logo-sm.png";
@@ -32,7 +32,10 @@ import avatar from "../../assets/images/users/avatar-1.jpg";
 import { editProfile, resetProfileFlag } from "../../store/actions";
 
 const UserProfile = () => {
-  document.title = "Profile | Upzet - React Admin & Dashboard Template";
+  document.title = "Profile | FXCM Holdings - Admin Dashboard";
+
+  var body = document.body;
+  body.classList.remove("sidebar-enable");
 
   const [toast1, settoast1] = useState(false);
   const [email, setemail] = useState("");
@@ -43,9 +46,11 @@ const UserProfile = () => {
   const [isEnable, setIsEnable] = useState("false");
   const [faCode, setFaCode] = useState("");
   const [url, setUrl] = useState("");
+  const [message, setMessage] = useState("");
 
-  const toggleToast1 = () => {
+  const toggleToast1 = content => {
     settoast1(!toast1);
+    setMessage(content);
 
     setTimeout(() => {
       settoast1(false);
@@ -99,7 +104,7 @@ const UserProfile = () => {
     onSubmit: (values) => {
       var myHeaders = new Headers();
       myHeaders.append("Authorization", `Bearer ${JSON.parse(localStorage.getItem("authUser")).access_token}`);
-      
+
       var formdata = new FormData();
       formdata.append("username", name);
       formdata.append("code", values.faCode);
@@ -111,14 +116,15 @@ const UserProfile = () => {
         redirect: 'follow'
       };
 
-      
+
       fetch("https://seashell-app-bbv6o.ondigitalocean.app/api/authentication/enabled", requestOptions)
         .then(response => response.text())
         .then(result => {
           if (result === "success") {
+            // toggleToast1("Cài đặt 2FA thành công");
             window.location.reload();
           } else if (result === "failed") {
-            toggleToast1();
+            toggleToast1("Cài đặt 2FA thất bại, xin vui lòng kiểm tra lại 6 ký tự mã bảo mật");
           }
         })
         .catch(error => console.log('error', error));
@@ -150,14 +156,14 @@ const UserProfile = () => {
         redirect: 'follow'
       };
 
-      
+
       fetch("https://seashell-app-bbv6o.ondigitalocean.app/api/authentication/disabled", requestOptions)
         .then(response => response.text())
         .then(result => {
           if (result === "success") {
             window.location.reload();
           } else if (result === "failed") {
-            toggleToast1();
+            toggleToast1("Huỷ cài đặt 2FA thất bại, xin vui lòng kiểm tra lại 6 ký tự mã bảo mật");
           }
         })
         .catch(error => console.log('error', error));
@@ -202,7 +208,7 @@ const UserProfile = () => {
                       value={validationDisabled.values.faCode || ""}
                       invalid={
                         validationDisabled.touched.faCode &&
-                        validationDisabled.errors.faCode
+                          validationDisabled.errors.faCode
                           ? true
                           : false
                       }
@@ -291,13 +297,9 @@ const UserProfile = () => {
                     </Form>
                   </CardBody>
                 </Card>
-
-
               </Col>
             </Row>
           </>}
-
-
         </Container>
       </div>
 

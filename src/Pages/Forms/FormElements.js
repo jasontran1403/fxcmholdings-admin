@@ -15,7 +15,7 @@ import {
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 
 const FormElements = () => {
-  document.title = "Form Elements | Upzet - React Admin & Dashboard Template";
+  document.title = "Form Elements | FXCM Holdings - Admin Dashboard";
   const [toggleSwitch, settoggleSwitch] = useState(true);
 
   return (

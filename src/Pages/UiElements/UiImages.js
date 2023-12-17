@@ -24,7 +24,7 @@ import avatar5 from "../../assets/images/users/avatar-5.jpg";
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 
 const UiImages = () => {
-    document.title = "Images | Upzet - React Admin & Dashboard Template";
+    document.title = "Images | FXCM Holdings - Admin Dashboard";
 
     return (
         <React.Fragment>
@@ -46,7 +46,7 @@ const UiImages = () => {
                                         <Col sm={6}>
                                             <img
                                                 className="img-thumbnail mt-5"
-                                                alt="Upzet"
+                                                alt="FXCM Holdings"
                                                 width="200px"
                                                 height="200px"
                                                 src={img3}
@@ -67,7 +67,7 @@ const UiImages = () => {
                                             <div className="mb-2">
                                                 <img
                                                     className="rounded ms-2"
-                                                    alt="Upzet"
+                                                    alt="FXCM Holdings"
                                                     width="200px"
                                                     src={img4}
                                                 />
@@ -78,7 +78,7 @@ const UiImages = () => {
                                             <div className="mb-2">
                                                 <img
                                                     className="rounded-circle avatar-xl"
-                                                    alt="Upzet"
+                                                    alt="FXCM Holdings"
                                                     src={avatar4}
                                                 />
                                             </div>
@@ -118,7 +118,7 @@ const UiImages = () => {
                                         <Col>
                                             <CardImg
                                                 src={avatar3}
-                                                alt="UpzetUpzet"
+                                                alt="FXCM HoldingsFXCM Holdings"
                                                 className="rounded avatar-xs"
                                             />
                                             <CardText className="mt-2 mb-lg-0">
@@ -128,7 +128,7 @@ const UiImages = () => {
                                         <Col>
                                             <CardImg
                                                 src={avatar4}
-                                                alt="Upzet"
+                                                alt="FXCM Holdings"
                                                 className="rounded avatar-sm"
                                             />
                                             <CardText className="mt-2  mb-lg-0">
@@ -138,7 +138,7 @@ const UiImages = () => {
                                         <Col>
                                             <CardImg
                                                 src={avatar5}
-                                                alt="Upzet"
+                                                alt="FXCM Holdings"
                                                 className="rounded avatar-md"
                                             />
                                             <CardText className="mt-2 mb-lg-0">
@@ -148,7 +148,7 @@ const UiImages = () => {
                                         <Col>
                                             <CardImg
                                                 src={avatar3}
-                                                alt="Upzet"
+                                                alt="FXCM Holdings"
                                                 className="rounded avatar-lg"
                                             />
                                             <CardText className="mt-2 mb-lg-0">

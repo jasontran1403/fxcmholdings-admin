@@ -58,7 +58,7 @@ const PricingData = [
 ];
 
 const Pricing = () => {
-  document.title = "Pricing  | Upzet - React Admin & Dashboard Template";
+  document.title = "Pricing  | FXCM Holdings - Admin Dashboard";
   return (
     <React.Fragment>
       <div className="page-content">

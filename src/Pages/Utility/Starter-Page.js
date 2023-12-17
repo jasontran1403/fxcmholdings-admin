@@ -7,7 +7,7 @@ import Breadcrumbs from "../../components/Common/Breadcrumb";
 
 
 const StarterPage = () => {
-    document.title = "Starter  | Upzet - React Admin & Dashboard Template";
+    document.title = "Starter  | FXCM Holdings - Admin Dashboard";
 
     return (
         <React.Fragment>

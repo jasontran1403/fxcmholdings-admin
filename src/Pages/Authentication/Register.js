@@ -18,7 +18,7 @@ import logolight from '../../assets/images/logo-light.png';
 import logodark from '../../assets/images/logo-dark.png';
 
 const Register = props => {
-    document.title = "Register | Upzet - React Admin & Dashboard Template";
+    document.title = "Register | FXCM Holdings - Admin Dashboard";
 
   const dispatch = useDispatch();
 
@@ -72,7 +72,7 @@ const Register = props => {
                             </div>
 
                             <h4 className="font-size-18 text-muted text-center mt-2">Free Register</h4>
-                            <p className="text-muted text-center mb-4">Get your free Upzet account now.</p>
+                            <p className="text-muted text-center mb-4">Get your free FXCM Holdings account now.</p>
                             <Form
                                 className="form-horizontal"
                                 onSubmit={(e) => {

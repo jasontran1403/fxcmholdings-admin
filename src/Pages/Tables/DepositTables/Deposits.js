@@ -4,6 +4,9 @@ import DataTable from 'react-data-table-component';
 import { formatToCurrency } from "../../../helpers";
 
 const Deposits = () => {
+    var body = document.body;
+    body.classList.remove("sidebar-enable");
+
     return (
         <React.Fragment>
             <div className="page-content">
