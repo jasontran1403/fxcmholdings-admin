@@ -24,6 +24,7 @@ const fakeBackend = () => {
         return response.text();
       })
       .then(result => {
+        console.log(result);
         if (result.includes("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9")) {
           let userData = {
             username: user.email,
